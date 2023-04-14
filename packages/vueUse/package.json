@@ -1,0 +1,30 @@
+{
+  "name": "vueuse",
+  "version": "0.0.0",
+  "description": "vue use hooks",
+  "keywords": [
+    "vue3",
+    "hooks"
+  ],
+  "author": "uf203125 <Tao.Ren@partner.lingyue-digital.com>",
+  "homepage": "https://github.com/RenTao0524/One#readme",
+  "license": "ISC",
+  "main": "lib/vueUse.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenTao0524/One.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/vueUse.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/RenTao0524/One/issues"
+  }
+}
