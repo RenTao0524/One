@@ -4,12 +4,14 @@
   "scripts": {
     "test:ugc": "lerna run test --scope ugc",
     "test:vueuse": "lerna run test --scope vueuse",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "server": "lerna run start:dev --scope be"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
+    "@nestjs/cli": "^9.4.0",
     "lerna": "^6.6.1"
   }
 }
