@@ -7,3 +7,8 @@ nest g controller user
 ```bash
 nest g service user
 ```
+
+## CLI 创建模块
+```bash
+nest g module cats
+```
