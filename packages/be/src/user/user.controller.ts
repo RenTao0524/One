@@ -2,70 +2,65 @@ import {
   Body,
   Controller,
   Get,
-  HttpCode,
-  Ip,
   Param,
   Post,
-  Query,
-  Req,
-  Res,
   Put,
-  HttpStatus,
+  Delete,
+  Query,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
 import { UserService } from './user.service';
+import type { User } from './interface/user.interface';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-  // @Get()
-  // findAll(): string {
-  //   return 'This action returns all cats';
-  // }
-  @Get('userInfo')
-  // @HttpCode(204)
-  getUserInfo(
-    @Req() request: Request,
-    @Param('name') name: string,
-    @Ip() ip: string,
-  ): any {
-    console.log('request:', name, ip);
-    // console.log(response);
-    // response.send({
-    //   name: 'tome',
-    //   age: 12,
-    // });
-    const list = this.userService.findAll();
-    return list;
-    // {
-    //   name: 'tome',
-    //   age: 12,
-    // };
+  /**
+   * 创建新用户
+   * @param body
+   * @returns
+   */
+  @Post('create')
+  async create(@Body() body: User) {
+    return await this.userService.create(body);
   }
-  @Post('userInfo')
-  createUserInfo(
-    @Query() query: any,
-    @Body() body: any,
-    @Param() param: any,
-  ): any {
-    // return @Res
-    console.log(query);
-    console.log(body);
-    console.log('Param:', param);
-    this.userService.create(query);
-    return {
-      ok: true,
-    };
+  /**
+   * 删除用户
+   * @param id
+   * @returns
+   */
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return await this.userService.delete(id);
   }
-  @Put('userInfo/:id')
-  updateUserInfo(
-    @Param() param: any,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    console.log('param:', param);
-    res.status(HttpStatus.OK);
-    return {
-      success: true,
-    };
+
+  /**
+   * 获取用户信息
+   * @param id
+   * @returns
+   */
+  @Get('info/:id')
+  async getInfo(@Param('id') id: number) {
+    return await this.userService.getInfo(id);
+  }
+
+  /**
+   * 更新用户信息
+   * @param id
+   * @param body
+   * @returns
+   */
+  @Put(':id')
+  async updateInfo(@Param('id') id: number, @Body() body: User) {
+    return await this.userService.updateInfo(id, body);
+  }
+
+  /**
+   * 获取用户列表
+   * @param query
+   * @returns
+   */
+  @Get('list')
+  async getUserList(@Query() query: User) {
+    return await this.userService.getUserList(query);
   }
 }
