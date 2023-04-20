@@ -11,6 +11,9 @@ export class User {
   @Column()
   age: number;
 
+  @Column({ default: 'male' })
+  sex: 'male' | 'female';
+
   // @Column({ default: true })
   // isActive: boolean;
 }

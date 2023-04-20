@@ -61,6 +61,14 @@ export class UserController {
    */
   @Get('list')
   async getUserList(@Query() query: User) {
-    return await this.userService.getUserList(query);
+    const list = await this.userService.getUserList(query);
+    return {
+      code: 200,
+      message: 'success',
+      data: {
+        limit: 10,
+        list,
+      },
+    };
   }
 }

@@ -33,12 +33,12 @@ export class UserService {
     });
     target.age = info.age;
     target.name = info.name;
+    target.sex = info.sex;
 
     return await this.usersRepository.save(target);
   }
 
   getUserList(query: any) {
-    console.log(query);
     return this.usersRepository.findBy(query);
   }
 }
