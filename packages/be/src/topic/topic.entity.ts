@@ -11,9 +11,10 @@ export class Topic {
   @Column()
   content: string;
 
-  // @Column({ default: 'male' })
-  // sex: 'male' | 'female';
-
-  // @Column({ default: true })
-  // isActive: boolean;
+  @Column({
+    name: 'create_time',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createTime: Date;
 }
