@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
-// import { UserService } from 'src/user/user.service';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { TopicService } from './topic.service';
 
 @Controller('topic')
 export class TopicController {
-  //   constructor(private userService: UserService) {}
+  constructor(private topicService: TopicService) {}
+
+  @Post('create')
+  async createTopic(@Body() body: any) {
+    return this.topicService.create(body);
+  }
+
   @Get('list')
   getList() {
-    // console.log('topic:', this.userService.findAll());
     return {
       list: [],
     };

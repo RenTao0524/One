@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TopicController } from './topic/topic.controller';
 import { User } from './user/user.entity';
+import { TopicModule } from './topic/topic.module';
+import { Topic } from './topic/topic.entity';
 
 @Module({
   imports: [
+    TopicModule,
     UserModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -13,12 +15,11 @@ import { User } from './user/user.entity';
       port: 3306,
       username: 'root',
       password: 'rentao@1638',
-      database: 'userinfo',
+      database: 'ugc',
       // autoLoadEntities: true,
-      entities: [User],
+      entities: [User, Topic],
       synchronize: true,
     }),
   ],
-  controllers: [TopicController],
 })
 export class AppModule {}
